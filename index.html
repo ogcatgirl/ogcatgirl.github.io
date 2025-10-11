@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glow Effect</title>
+  <style>
+    
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;}
+  body {
+    height: 100vh;
+    background: #000;
+    overflow: hidden;
+    position: relative;}.cursor-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(circle 100px at var(--x) var(--y), rgba(255,255,255,0.2), transparent 100px);
+    z-index: 1;
+    transition: background 0.1s;}</style>
+</head>
+<body>
+  <div class="cursor-effect"></div>
+
+  <script>
+    const cursorEffect = document.querySelector('.cursor-effect');
+    document.addEventListener('mousemove', e => {
+      cursorEffect.style.setProperty('--x', e.clientX + 'px');
+      cursorEffect.style.setProperty('--y', e.clientY + 'px');
+    });
+  </script>
+</body>
+</html>
