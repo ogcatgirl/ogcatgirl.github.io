@@ -8,8 +8,16 @@
     <meta name="description" content="cece is under 80bmi">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>rape</title> 
+    <title>rape</title>  
     <style>
+     
+        body, .overlay, #anime-girl {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
         body {
             margin: 0;
             background-color: black;
@@ -118,11 +126,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            user-select: text;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
         }
 
         .social-item img {
-            width: 70px; 
-            height: 70px;
+            width: 60px; 
+            height: 60px;
             transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.3s ease;
             filter: drop-shadow(0 0 8px rgba(255,255,255,0.6)); 
         }
@@ -177,10 +189,16 @@
         document.body.appendChild(dot);
         setTimeout(() => dot.remove(), 1000);
     });
+
+    // Prevent right-click everywhere
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        alert("Right-click is disabled!");
+    });
 </script>
 
 <div id="anime-girl">
-⠟⠋⠀⠄⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⢢⠙⠛⣿⣿⡆⠀⠀⢠⠀⠀⠀⠹⣦⢣⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⢤⣀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠟⠋⠀⠄⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⢢⠙⠛⣿⣿⡆⠀⠀⢠⠀⠀⠀⠹⣦⢣⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⢤⣀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⣼⡟⣰⠃⠀⠀⢀⡶⢤⡀⠀⠀⠀⠘⡆⠀⠀⠀⠈⣆⠀⠛⢻⣿⣀⠀⠈⡇⠀⢀⠀⢹⣎⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⠃⠀⢨⠇⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⣿⠁⣽⣄⣀⣀⡾⠇⠘⡷⢦⡀⠀⠀⢻⠀⠀⠀⠀⠘⡆⠀⠀⢿⣽⣦⠀⢿⠀⢸⠀⠀⡟⢾⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢧⣀⣠⠏⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⢸⡏⡄⠈⣧⢈⡿⠛⠛⠓⢷⡀⠙⠛⣶⣚⣧⠀⠀⠀⢀⢻⠀⠀⠈⢿⣿⣷⣼⠀⣸⠀⢸⣷⡈⢻⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀
@@ -212,7 +230,7 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠏⢡⡤⣶⠀⠹⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡦⠼⠓⠳⠦⣄⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣧⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠶⡖⠒⠒⢦⣼⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡿⠆⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠀⠀
 </div>
 
 <div class="info-box" id="infoBox">
