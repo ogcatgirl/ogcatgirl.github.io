@@ -130,6 +130,24 @@
         transform: translate(-50%, -50%) scale(0.5);
     }
 }
+        #running-cat {
+    position: fixed;
+    bottom: 10px;
+    left: -100px;
+    width: 80px;
+    z-index: 9999;
+    animation: runCat 12s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes runCat {
+    0% {
+        left: -100px;
+    }
+    100% {
+        left: 100vw;
+    }
+}
     </style>
 </head>
 <body>
@@ -198,5 +216,6 @@
         }, 1000); // 1 second fade
     });
 </script>
+        <img id="running-cat" src="2ad9278233e9f4d41d0a7dd92495fdb3.gif" alt="Running Cat">
 </body>
 </html>
