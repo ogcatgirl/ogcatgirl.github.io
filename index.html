@@ -88,12 +88,12 @@
 
         .info-box {
             position: fixed;
-            bottom: 60px;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.05); 
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.03); 
             border-radius: 20px;
-            padding: 30px 60px; 
+            padding: 30px 60px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -109,7 +109,7 @@
         .socials {
             display: flex;
             align-items: center;
-            gap: 50px; 
+            gap: 50px;
         }
 
         .social-item {
@@ -121,14 +121,16 @@
         }
 
         .social-item img {
-            width: 80px; 
-            height: 80px;
-            transition: transform 0.2s ease, opacity 0.2s ease;
+            width: 70px; 
+            height: 70px;
+            transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.3s ease;
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.6)); 
         }
 
         .social-item:hover img {
-            transform: scale(1.15);
+            transform: scale(1.1);
             opacity: 1;
+            filter: drop-shadow(0 0 12px rgba(255,255,255,0.9)); 
         }
 
         .tooltip {
@@ -217,7 +219,7 @@
   <div class="socials">
     <div class="social-item" id="telegramItem" data-username="@ch_ker">
       <img src="telegram.png" alt="Telegram">
-      <div class="tooltip">click to copy</div>
+      <div class="tooltip"cClick to copy</div>
     </div>
     <div class="social-item" id="discordItem" data-username="pnytail">
       <img src="discord.png" alt="Discord">
@@ -232,7 +234,7 @@
         item.addEventListener('click', () => {
             const username = item.getAttribute('data-username');
             navigator.clipboard.writeText(username);
-            tooltip.textContent = 'Copied!';
+            tooltip.textContent = 'copied lol';
             tooltip.style.opacity = '1';
             setTimeout(() => {
                 tooltip.textContent = 'click to copy';
