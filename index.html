@@ -133,8 +133,8 @@
         #running-cat {
     position: fixed;
     bottom: 0;
-    left: -100px;
-    width: 120px;
+    left: -120px;   /* start fully hidden off left */
+    width: 120px;   /* bigger but not huge */
     z-index: 9999;
     animation: runCat 12s linear infinite;
     pointer-events: none;
@@ -142,10 +142,10 @@
 
 @keyframes runCat {
     0% {
-        left: -100px;
+        left: -120px;    /* start fully off-screen left */
     }
     100% {
-        left: 100vw;
+        left: 100vw;     /* move fully across viewport */
     }
 }
     </style>
