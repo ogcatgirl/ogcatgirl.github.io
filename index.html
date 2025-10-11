@@ -112,6 +112,25 @@
         * {
             cursor: url('cursor.cur'), auto !important;
         }
+        .cursor-dot {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    animation: fadeOut 1s linear forwards;
+    z-index: 9999;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+}
     </style>
 </head>
 <body>
@@ -133,7 +152,6 @@
             }, 500);
         });
     </script>
-
     <div id="anime-girl">
 ⠀⠀⠀⠀⠀⠀⠀⣠⠟⠋⠀⠄⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⢢⠙⠛⣿⣿⡆⠀⠀⢠⠀⠀⠀⠹⣦⢣⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⢤⣀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⣼⡟⣰⠃⠀⠀⢀⡶⢤⡀⠀⠀⠀⠘⡆⠀⠀⠀⠈⣆⠀⠛⢻⣿⣀⠀⠈⡇⠀⢀⠀⢹⣎⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⠃⠀⢨⠇⠀⠀⠀⠀⠀⠀
