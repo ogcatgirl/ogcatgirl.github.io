@@ -1,54 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cursor Trail</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>White Dot Trail</title>
   <style>
-    
-{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;}
-
-    body {
-      background-color: #000;
-      height: 100vh;
-      overflow: hidden;
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #000;
       cursor: crosshair;
+      overflow: hidden;
     }
 
-    .trail {
+    .dot {
       position: fixed;
-      width: 6px;
-      height: 6px;
-      background: white;
+      width: 8px;
+      height: 8px;
+      background: #fff;
       border-radius: 50%;
       pointer-events: none;
       opacity: 1;
-      transform: translate(-50%, -50%);
-      animation: fade 0.8s linear forwards;
-    }
-
-    @keyframes fade {
-      to {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.3);
-      }
+      transform: translate(-50%, -50%) scale(1);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
   </style>
 </head>
 <body>
   <script>
-    document.addEventListener('mousemove', e => {
-      const dot = document.createElement('div');
-      dot.className = 'trail';
-      dot.style.left = ${e.clientX}px;
-      dot.style.top = ${e.clientY}px;
+    document.addEventListener("mousemove", e => {
+      const dot = document.createElement("div");
+      dot.className = "dot";
+      dot.style.left = e.clientX + "px";
+      dot.style.top = e.clientY + "px";
       document.body.appendChild(dot);
 
-      // Remove the dot after it fades out
-      setTimeout(() => dot.remove(), 800);
+      // Trigger the fade/shrink transition
+      requestAnimationFrame(() => {
+        dot.style.opacity = "0";
+        dot.style.transform = "translate(-50%, -50%) scale(0.3)";
+      });
+
+      // Remove the dot after the animation
+      setTimeout(() => dot.remove(), 600);
     });
   </script>
 </body>
