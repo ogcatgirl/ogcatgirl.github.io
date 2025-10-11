@@ -3,47 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>White Dot Trail</title>
+  <title>Running Cat</title>
   <style>
     html, body {
-      height: 100%;
       margin: 0;
+      padding: 0;
       background: #000;
-      cursor: crosshair;
       overflow: hidden;
+      height: 100vh;
     }
 
-    .dot {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      background: #fff;
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    .cat {
+      position: absolute;
+      bottom: 20px;
+      left: -100px;
+      font-size: 50px;
+      color: white;
+      animation: runAcross 8s linear infinite;
+    }
+
+    @keyframes runAcross {
+      0% {
+        left: -100px;
+        transform: scaleX(1);
+      }
+      49% {
+        transform: scaleX(1);
+      }
+      50% {
+        left: 100vw;
+        transform: scaleX(-1);
+      }
+      99% {
+        transform: scaleX(-1);
+      }
+      100% {
+        left: -100px;
+        transform: scaleX(1);
+      }
     }
   </style>
 </head>
 <body>
-  <script>
-    document.addEventListener("mousemove", e => {
-      const dot = document.createElement("div");
-      dot.className = "dot";
-      dot.style.left = e.clientX + "px";
-      dot.style.top = e.clientY + "px";
-      document.body.appendChild(dot);
-
-      // Trigger the fade/shrink transition
-      requestAnimationFrame(() => {
-        dot.style.opacity = "0";
-        dot.style.transform = "translate(-50%, -50%) scale(0.3)";
-      });
-
-      // Remove the dot after the animation
-      setTimeout(() => dot.remove(), 600);
-    });
-  </script>
+  <div class="cat">🐈</div>
 </body>
 </html>
