@@ -11,7 +11,7 @@
     <title>rape</title>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-               body {
+        body {
             margin: 0;
             background-color: black;
             display: flex;
@@ -24,6 +24,7 @@
             font-weight: bold;
             text-shadow: 0 0 10px rgb(90, 85, 85);
             overflow: hidden;
+            cursor: url('cursor.cur'), auto;
         }
 
         .overlay {
@@ -63,132 +64,96 @@
             12.5%, 37.5%, 62.5%, 87.5% { color: transparent; }
         }
 
-         @keyframes rockSideToSide {
-            0% {
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(-5px);
-            }
-            100% {
-                transform: translateX(0);
-            }
+        @keyframes rockSideToSide {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
         }
 
-        #socials {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 20px;
-        }
-
-        #telegram {
-            margin-right: 10px;
-            color: rgb(0, 0, 0);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        #telegram:hover {
-            color: black;
-        }
-        #socials span {
-            margin-right: 10px;
-            color: rgb(0, 0, 0);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        #socials span:hover {
-            color: black;
-        }
-
-        body {
-            cursor: url('cursor.cur'), auto;
-        }
-
-        * {
-            cursor: url('cursor.cur'), auto !important;
-        }
         .cursor-dot {
-    position: fixed;
-    width: 6px;
-    height: 6px;
-    background-color: white;
-    border-radius: 50%;
-    pointer-events: none;
-    opacity: 1;
-    transform: translate(-50%, -50%);
-    animation: fadeOut 1s linear forwards;
-    z-index: 9999;
-}
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background-color: white;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 1;
+            transform: translate(-50%, -50%);
+            animation: fadeOut 1s linear forwards;
+            z-index: 9999;
+        }
 
-@keyframes fadeOut {
-    to {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.5);
-    }
-}
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+        }
+
+        /* this is the fade in thing */
         .info-box {
-  position: fixed;
-  bottom: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.05); 
-  border-radius: 20px;
-  padding: 14px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.1);
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  color: white;
-  font-family: monospace;
-  backdrop-filter: blur(6px); 
-}
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 25px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            box-shadow: 0 0 25px rgba(255,255,255,0.2);
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            color: white;
+            font-family: monospace;
+            backdrop-filter: blur(6px);
+        }
 
-.socials {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
+        .info-box.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
 
-.social-item {
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+        .socials {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
 
-.social-item i {
-  font-size: 32px;
-  color: white; /
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  opacity: 0.8;
-}
+        .social-item {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.social-item:hover i {
-  transform: scale(1.15);
-  opacity: 1;
-}
+        .social-item i {
+            font-size: 48px;
+            color: white;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            opacity: 0.9;
+        }
 
-.tooltip {
-  position: absolute;
-  bottom: -28px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #ccc;
-  padding: 3px 8px;
-  border-radius: 6px;
-  font-size: 11px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
+        .social-item:hover i {
+            transform: scale(1.2);
+            opacity: 1;
+        }
 
+        .tooltip {
+            position: absolute;
+            bottom: -30px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ccc;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
     </style>
     <link rel="icon" href="icon.png">
 </head>
@@ -197,22 +162,9 @@
     <div class="overlay" id="overlay">
         <h1>click me</h1>
     </div>
-    
-    <script>
-        var overlay = document.getElementById('overlay');
-        var audio = new Audio('/music.mp3');
-        
-        overlay.addEventListener('click', function() {
-            audio.play();
-            overlay.style.transition = 'opacity 0.5s';
-            overlay.style.opacity = '0';
-            setTimeout(function(){
-                overlay.style.display = 'none';
-            }, 500);
-        });
-    </script>
+
     <div id="anime-girl">
-⠀⠀⠀⠀⠀⠀⠀⣠⠟⠋⠀⠄⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⢢⠙⠛⣿⣿⡆⠀⠀⢠⠀⠀⠀⠹⣦⢣⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⢤⣀⠀⠀⠀⠀⠀⠀⠀
+        ⠟⠋⠀⠄⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⢢⠙⠛⣿⣿⡆⠀⠀⢠⠀⠀⠀⠹⣦⢣⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⢤⣀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⣼⡟⣰⠃⠀⠀⢀⡶⢤⡀⠀⠀⠀⠘⡆⠀⠀⠀⠈⣆⠀⠛⢻⣿⣀⠀⠈⡇⠀⢀⠀⢹⣎⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⠃⠀⢨⠇⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⣿⠁⣽⣄⣀⣀⡾⠇⠘⡷⢦⡀⠀⠀⢻⠀⠀⠀⠀⠘⡆⠀⠀⢿⣽⣦⠀⢿⠀⢸⠀⠀⡟⢾⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢧⣀⣠⠏⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⢸⡏⡄⠈⣧⢈⡿⠛⠛⠓⢷⡀⠙⠛⣶⣚⣧⠀⠀⠀⢀⢻⠀⠀⠈⢿⣿⣷⣼⠀⣸⠀⢸⣷⡈⢻⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀
@@ -244,65 +196,61 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠏⢡⡤⣶⠀⠹⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡦⠼⠓⠳⠦⣄⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣧⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠶⡖⠒⠒⢦⣼⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡿⠆⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠋⠀⠀⠀⠀⠀
-   <script>
-    document.addEventListener('mousemove', function(e) {
-        const dot = document.createElement('div');
-        dot.classList.add('cursor-dot');
-        dot.style.left = `${e.clientX}px`;
-        dot.style.top = `${e.clientY}px`;
-        document.body.appendChild(dot);
-
-        setTimeout(() => {
-            dot.remove();
-        }, 1000); 
-    });
-</script> 
-        <div class="info-box" id="infoBox">
-  <div class="socials">
-    <div class="social-item" id="telegramItem" data-username="@ch_ker">
-      <i class="fa-brands fa-telegram"></i>
-      <div class="tooltip">Click to copy</div>
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠋⠀
     </div>
-    <div class="social-item" id="discordItem" data-username="pnytail">
-      <i class="fa-brands fa-discord"></i>
-      <div class="tooltip">Click to copy</div>
+
+    <div class="info-box" id="infoBox">
+        <div class="socials">
+            <div class="social-item" id="discordItem" data-username="pnytail">
+                <i class="fa-brands fa-discord"></i>
+                <div class="tooltip">Click to copy</div>
+            </div>
+            <div class="social-item" id="telegramItem" data-username="ch_ker">
+                <i class="fa-brands fa-telegram"></i>
+                <div class="tooltip">Click to copy</div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<script>
-   
-  overlay.addEventListener('click', function() {
-      audio.play();
-      overlay.style.transition = 'opacity 0.5s';
-      overlay.style.opacity = '0';
-      setTimeout(() => {
-          overlay.style.display = 'none';
-          document.getElementById('infoBox').style.opacity = '1';
-      }, 500);
-  });
+    <script>
+        var overlay = document.getElementById('overlay');
+        var audio = new Audio('/music.mp3');
 
-    document.querySelectorAll('.social-item').forEach(item => {
-    const tooltip = item.querySelector('.tooltip');
-    item.addEventListener('click', () => {
-      const username = item.getAttribute('data-username');
-      navigator.clipboard.writeText(username);
-      tooltip.textContent = 'Copied!';
-      tooltip.style.opacity = '1';
-      setTimeout(() => {
-        tooltip.textContent = 'Click to copy';
-        tooltip.style.opacity = '0';
-      }, 1000);
-    });
-    item.addEventListener('mouseenter', () => {
-      tooltip.style.opacity = '1';
-    });
-    item.addEventListener('mouseleave', () => {
-      tooltip.style.opacity = '0';
-    });
-  });
-</script>
+        overlay.addEventListener('click', function() {
+            audio.play();
+            overlay.style.transition = 'opacity 0.5s';
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                document.getElementById('infoBox').classList.add('show');
+            }, 500);
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            const dot = document.createElement('div');
+            dot.classList.add('cursor-dot');
+            dot.style.left = `${e.clientX}px`;
+            dot.style.top = `${e.clientY}px`;
+            document.body.appendChild(dot);
+            setTimeout(() => { dot.remove(); }, 1000); 
+        });
+
+        document.querySelectorAll('.social-item').forEach(item => {
+            const tooltip = item.querySelector('.tooltip');
+            item.addEventListener('click', () => {
+                const username = item.getAttribute('data-username');
+                navigator.clipboard.writeText(username);
+                tooltip.textContent = 'Copied!';
+                tooltip.style.opacity = '1';
+                setTimeout(() => {
+                    tooltip.textContent = 'Click to copy';
+                    tooltip.style.opacity = '0';
+                }, 1000);
+            });
+            item.addEventListener('mouseenter', () => { tooltip.style.opacity = '1'; });
+            item.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; });
+        });
+    </script>
 
 </body>
 </html>
