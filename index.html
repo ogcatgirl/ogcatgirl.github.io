@@ -5,11 +5,10 @@
     <meta content="cece is under 80bmi" property="og:title"/>
     <meta content="" property="og:description" />
     <meta content="#000000" data-react-helmet="true" name="cece is under 80bmi" />
-    <meta name="description"cece is under 80bmi">
+    <meta name="description" content="cece is under 80bmi">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>rape</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <title>rape</title> 
     <style>
         body {
             margin: 0;
@@ -40,12 +39,12 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            cursor: pointer;
         }
 
         .overlay h1 {
             color: white;
             font-size: 2rem;
-            cursor: pointer;
             transition: 0.3s;
         }
 
@@ -84,42 +83,33 @@
         }
 
         @keyframes fadeOut {
-            to {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.5);
-            }
+            to { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
         }
 
-        /* this is the fade in thing */
         .info-box {
             position: fixed;
-            top: 50%;
+            bottom: 60px;
             left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.05); 
             border-radius: 20px;
-            padding: 25px 60px;
+            padding: 30px 60px; 
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 50px;
-            box-shadow: 0 0 25px rgba(255,255,255,0.2);
+            gap: 40px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
             opacity: 0;
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transition: opacity 0.6s ease;
             color: white;
             font-family: monospace;
-            backdrop-filter: blur(6px);
-        }
-
-        .info-box.show {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
+            backdrop-filter: blur(6px); 
         }
 
         .socials {
             display: flex;
             align-items: center;
-            gap: 40px;
+            gap: 50px; 
         }
 
         .social-item {
@@ -130,15 +120,14 @@
             justify-content: center;
         }
 
-        .social-item i {
-            font-size: 48px;
-            color: white;
+        .social-item img {
+            width: 80px; 
+            height: 80px;
             transition: transform 0.2s ease, opacity 0.2s ease;
-            opacity: 0.9;
         }
 
-        .social-item:hover i {
-            transform: scale(1.2);
+        .social-item:hover img {
+            transform: scale(1.15);
             opacity: 1;
         }
 
@@ -153,18 +142,43 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
+            white-space: nowrap;
         }
     </style>
     <link rel="icon" href="icon.png">
 </head>
 <body>
 
-    <div class="overlay" id="overlay">
-        <h1>click me</h1>
-    </div>
+<div class="overlay" id="overlay">
+    <h1>click me</h1>
+</div>
 
-    <div id="anime-girl">
-        ⠟⠋⠀⠄⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⢢⠙⠛⣿⣿⡆⠀⠀⢠⠀⠀⠀⠹⣦⢣⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⢤⣀⠀⠀⠀⠀⠀⠀⠀
+<script>
+    var overlay = document.getElementById('overlay');
+    var audio = new Audio('/music.mp3');
+    
+    overlay.addEventListener('click', function() {
+        audio.play();
+        overlay.style.transition = 'opacity 0.5s';
+        overlay.style.opacity = '0';
+        setTimeout(function(){
+            overlay.style.display = 'none';
+            document.getElementById('infoBox').style.opacity = '1';
+        }, 500);
+    });
+
+    document.addEventListener('mousemove', function(e) {
+        const dot = document.createElement('div');
+        dot.classList.add('cursor-dot');
+        dot.style.left = `${e.clientX}px`;
+        dot.style.top = `${e.clientY}px`;
+        document.body.appendChild(dot);
+        setTimeout(() => dot.remove(), 1000);
+    });
+</script>
+
+<div id="anime-girl">
+⠟⠋⠀⠄⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⢢⠙⠛⣿⣿⡆⠀⠀⢠⠀⠀⠀⠹⣦⢣⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⢤⣀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⣼⡟⣰⠃⠀⠀⢀⡶⢤⡀⠀⠀⠀⠘⡆⠀⠀⠀⠈⣆⠀⠛⢻⣿⣀⠀⠈⡇⠀⢀⠀⢹⣎⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⠃⠀⢨⠇⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⣿⠁⣽⣄⣀⣀⡾⠇⠘⡷⢦⡀⠀⠀⢻⠀⠀⠀⠀⠘⡆⠀⠀⢿⣽⣦⠀⢿⠀⢸⠀⠀⡟⢾⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢧⣀⣠⠏⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⢸⡏⡄⠈⣧⢈⡿⠛⠛⠓⢷⡀⠙⠛⣶⣚⣧⠀⠀⠀⢀⢻⠀⠀⠈⢿⣿⣷⣼⠀⣸⠀⢸⣷⡈⢻⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀
@@ -196,61 +210,39 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠏⢡⡤⣶⠀⠹⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡦⠼⠓⠳⠦⣄⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣧⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠶⡖⠒⠒⢦⣼⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡿⠆⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠋⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾
+</div>
+
+<div class="info-box" id="infoBox">
+  <div class="socials">
+    <div class="social-item" id="telegramItem" data-username="@ch_ker">
+      <img src="telegram.png" alt="Telegram">
+      <div class="tooltip">Click to copy</div>
     </div>
-
-    <div class="info-box" id="infoBox">
-        <div class="socials">
-            <div class="social-item" id="discordItem" data-username="pnytail">
-                <i class="fa-brands fa-discord"></i>
-                <div class="tooltip">Click to copy</div>
-            </div>
-            <div class="social-item" id="telegramItem" data-username="ch_ker">
-                <i class="fa-brands fa-telegram"></i>
-                <div class="tooltip">Click to copy</div>
-            </div>
-        </div>
+    <div class="social-item" id="discordItem" data-username="pnytail">
+      <img src="discord.png" alt="Discord">
+      <div class="tooltip">Click to copy</div>
     </div>
+  </div>
+</div>
 
-    <script>
-        var overlay = document.getElementById('overlay');
-        var audio = new Audio('/music.mp3');
-
-        overlay.addEventListener('click', function() {
-            audio.play();
-            overlay.style.transition = 'opacity 0.5s';
-            overlay.style.opacity = '0';
+<script>
+    document.querySelectorAll('.social-item').forEach(item => {
+        const tooltip = item.querySelector('.tooltip');
+        item.addEventListener('click', () => {
+            const username = item.getAttribute('data-username');
+            navigator.clipboard.writeText(username);
+            tooltip.textContent = 'Copied!';
+            tooltip.style.opacity = '1';
             setTimeout(() => {
-                overlay.style.display = 'none';
-                document.getElementById('infoBox').classList.add('show');
-            }, 500);
+                tooltip.textContent = 'Click to copy';
+                tooltip.style.opacity = '0';
+            }, 1000);
         });
-
-        document.addEventListener('mousemove', function(e) {
-            const dot = document.createElement('div');
-            dot.classList.add('cursor-dot');
-            dot.style.left = `${e.clientX}px`;
-            dot.style.top = `${e.clientY}px`;
-            document.body.appendChild(dot);
-            setTimeout(() => { dot.remove(); }, 1000); 
-        });
-
-        document.querySelectorAll('.social-item').forEach(item => {
-            const tooltip = item.querySelector('.tooltip');
-            item.addEventListener('click', () => {
-                const username = item.getAttribute('data-username');
-                navigator.clipboard.writeText(username);
-                tooltip.textContent = 'Copied!';
-                tooltip.style.opacity = '1';
-                setTimeout(() => {
-                    tooltip.textContent = 'Click to copy';
-                    tooltip.style.opacity = '0';
-                }, 1000);
-            });
-            item.addEventListener('mouseenter', () => { tooltip.style.opacity = '1'; });
-            item.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; });
-        });
-    </script>
+        item.addEventListener('mouseenter', () => { tooltip.style.opacity = '1'; });
+        item.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; });
+    });
+</script>
 
 </body>
 </html>
