@@ -1,4 +1,4 @@
-<!-- you're welcome for the site fixes - luke ; ty lukey :3 -->
+\<!-- you're welcome for the site fixes - luke ; ty lukey :3 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -288,7 +288,7 @@
 </div>
 
 <script>
-    
+   
     document.querySelectorAll('.social-item').forEach(item => {
         const tooltip = item.querySelector('.tooltip');
         item.addEventListener('click', () => {
@@ -305,21 +305,25 @@
         item.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; });
     });
 
-    const viewCountEl = document.getElementById('viewCount');
+    const counterKey = 'cece-eye-counter';
+    const sessionHitKey = 'eyeCounterHit';
 
-    const incrementCounter = () => {
-        fetch('https://api.countapi.xyz/hit/cece-eye-counter/views')
-            .then(response => response.json())
+    
+    if (!sessionStorage.getItem(sessionHitKey)) {
+        fetch(`https://api.countapi.xyz/hit/${counterKey}/views`)
+            .then(res => res.json())
             .then(data => {
-                viewCountEl.textContent = data.value;
+                document.getElementById('viewCount').textContent = data.value;
+                sessionStorage.setItem(sessionHitKey, 'true');
             });
-    };
-
-    incrementCounter();
-
-    overlay.addEventListener('click', () => {
-        incrementCounter();
-    });
+    } else {
+        
+        fetch(`https://api.countapi.xyz/get/${counterKey}/views`)
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('viewCount').textContent = data.value;
+            });
+    }
 </script>
 
 <img src="cat3.gif" alt="cat" class="cat3-gif">
