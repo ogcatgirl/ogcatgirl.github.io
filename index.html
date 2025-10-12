@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>rape</title>   
+
     <style>
         body, .overlay, #anime-girl {
             user-select: none;
@@ -126,6 +127,9 @@
             align-items: center;
             justify-content: center;
             user-select: text;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
         }
 
         .social-item img {
@@ -168,19 +172,19 @@
 
         .eye-counter {
             position: fixed;
-            bottom: 20px;
+            bottom: 60px; 
             left: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
             font-family: monospace;
-            font-size: 16px;
-            opacity: 0;
-            transition: opacity 0.6s ease;
+            font-size: 20px;
+            opacity: 0.4; 
+            transition: opacity 0.8s ease;
         }
 
         .eye-counter img {
-            width: 30px;
+            width: 38px;
             height: auto;
             filter: drop-shadow(0 0 6px rgba(255,255,255,0.5));
         }
@@ -191,6 +195,7 @@
             }
         }
     </style>
+
     <link rel="icon" href="icon.png">
 </head>
 <body>
@@ -210,7 +215,7 @@
         setTimeout(function(){
             overlay.style.display = 'none';
             document.getElementById('infoBox').style.opacity = '1';
-            document.getElementById('eyeCounter').style.opacity = '1';
+            document.getElementById('eyeCounter').style.opacity = '1'; 
         }, 500);
     });
 
@@ -228,9 +233,8 @@
     });
 </script>
 
-
 <div id="anime-girl">
-  ⠟⠋⠀⠄⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⢢⠙⠛⣿⣿⡆⠀⠀⢠⠀⠀⠀⠹⣦⢣⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⢤⣀⠀⠀⠀⠀⠀⠀⠀
+⠟⠋⠀⠄⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⢢⠙⠛⣿⣿⡆⠀⠀⢠⠀⠀⠀⠹⣦⢣⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⢤⣀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⣼⡟⣰⠃⠀⠀⢀⡶⢤⡀⠀⠀⠀⠘⡆⠀⠀⠀⠈⣆⠀⠛⢻⣿⣀⠀⠈⡇⠀⢀⠀⢹⣎⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⠃⠀⢨⠇⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⣿⠁⣽⣄⣀⣀⡾⠇⠘⡷⢦⡀⠀⠀⢻⠀⠀⠀⠀⠘⡆⠀⠀⢿⣽⣦⠀⢿⠀⢸⠀⠀⡟⢾⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢧⣀⣠⠏⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⢸⡏⡄⠈⣧⢈⡿⠛⠛⠓⢷⡀⠙⠛⣶⣚⣧⠀⠀⠀⢀⢻⠀⠀⠈⢿⣿⣷⣼⠀⣸⠀⢸⣷⡈⢻⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀
@@ -262,7 +266,7 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠏⢡⡤⣶⠀⠹⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡦⠼⠓⠳⠦⣄⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣧⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠶⡖⠒⠒⢦⣼⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡿⠆⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠋  
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠋
 </div>
 
 <div class="info-box" id="infoBox">
@@ -278,13 +282,14 @@
   </div>
 </div>
 
+
 <div class="eye-counter" id="eyeCounter">
-    <img src="eye.png" alt="eye">
-    <span id="count">0</span>
+    <img src="eye.png" alt="Eye">
+    <span id="viewCount">0</span>
 </div>
 
 <script>
-    // copy-to-clipboard tooltips
+    
     document.querySelectorAll('.social-item').forEach(item => {
         const tooltip = item.querySelector('.tooltip');
         item.addEventListener('click', () => {
@@ -301,13 +306,11 @@
         item.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; });
     });
 
-    
-    const counterKey = 'cece_under80bmi_permanent_views';
-    fetch(`https://api.countapi.xyz/hit/cece/${counterKey}`)
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById('count').textContent = data.value;
-      });
+    fetch('https://api.countapi.xyz/hit/cece-eye-counter/views')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('viewCount').textContent = data.value;
+        });
 </script>
 
 <img src="cat3.gif" alt="cat" class="cat3-gif">
