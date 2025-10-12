@@ -63,18 +63,7 @@
         #anime-girl {
             font-size: 0.70rem;
             white-space: pre;
-            animation: flashyFadeInOut 4s infinite, rockSideToSide 4s infinite;
-        }
-
-        @keyframes flashyFadeInOut {
-            0%, 25%, 50%, 75%, 100% { color: rgb(5, 5, 5); }
-            12.5%, 37.5%, 62.5%, 87.5% { color: transparent; }
-        }
-
-        @keyframes rockSideToSide {
-            0% { transform: translateX(0); }
-            50% { transform: translateX(-5px); }
-            100% { transform: translateX(0); }
+            
         }
 
         .cursor-dot {
@@ -309,7 +298,8 @@
         .then(response => response.json())
         .then(data => {
             document.getElementById('viewCount').textContent = data.value;
-        });
+        })
+        .catch(err => console.error('CounterAPI error:', err));
 </script>
 
 <img src="cat3.gif" alt="cat" class="cat3-gif">
