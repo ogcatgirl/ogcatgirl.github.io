@@ -305,7 +305,7 @@
         item.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; });
     });
 
-    fetch('https://api.countapi.dev/hit/cece-eye-counter/myviews')
+    fetch('https://api.countapi.dev/hit/ce/myviews')
         .then(response => response.json())
         .then(data => {
             document.getElementById('viewCount').textContent = data.value;
