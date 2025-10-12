@@ -60,7 +60,7 @@
         }
 
         #anime-girl {
-            font-size: 0.7rem;
+            font-size: 0.70rem;
             white-space: pre;
             animation: flashyFadeInOut 4s infinite, rockSideToSide 4s infinite;
         }
@@ -158,6 +158,7 @@
             white-space: nowrap;
         }
 
+        
         @media (max-width: 768px) {
             .overlay {
                 background: rgba(0, 0, 0, 0.3);
@@ -168,10 +169,17 @@
             }
             #anime-girl {
                 opacity: 0.9;
+                transform: scale(1.1); 
             }
             .info-box {
                 background: rgba(255, 255, 255, 0.08);
                 backdrop-filter: blur(3px);
+                padding: 20px 30px;
+                gap: 40px;
+            }
+            .social-item img {
+                width: 50px;
+                height: 50px;
             }
         }
         
@@ -217,13 +225,27 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠏⢡⡤⣶⠀⠹⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡦⠼⠓⠳⠦⣄⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣧⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠶⡖⠒⠒⢦⣼⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡿⠆⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠋⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠋⠀
+</div>
+
+<div class="info-box" id="infoBox">
+    <div class="socials">
+        <div class="social-item" data-username="yourdiscord#0000">
+            <img src="discord.png" alt="Discord">
+            <div class="tooltip">click to copy</div>
+        </div>
+        <div class="social-item" data-username="@yourtelegram">
+            <img src="telegram.png" alt="Telegram">
+            <div class="tooltip">click to copy</div>
+        </div>
+    </div>
 </div>
 
 <script>
-    var overlay = document.getElementById('overlay');
-    var audio = new Audio('/music.mp3');
-    
+    const overlay = document.getElementById('overlay');
+    const audio = new Audio('/music.mp3');
+    const socialItems = document.querySelectorAll('.social-item');
+
     overlay.addEventListener('click', function() {
         audio.play();
         overlay.style.transition = 'opacity 0.5s';
@@ -243,8 +265,20 @@
         setTimeout(() => dot.remove(), 1000);
     });
 
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    socialItems.forEach(item => {
+        const tooltip = item.querySelector('.tooltip');
+        const username = item.dataset.username;
+
+        item.addEventListener('mouseenter', () => tooltip.style.opacity = '1');
+        item.addEventListener('mouseleave', () => tooltip.style.opacity = '0');
+
+        item.addEventListener('click', () => {
+            navigator.clipboard.writeText(username);
+            tooltip.textContent = 'copied!';
+            setTimeout(() => tooltip.textContent = 'click to copy', 1500);
+        });
     });
 </script>
 
