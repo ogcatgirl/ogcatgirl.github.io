@@ -305,19 +305,21 @@
         item.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; });
     });
 
-    const countKey = 'cece-eye-counter';
-    const countUrl = `https://api.countapi.xyz/hit/${countKey}/views`;
+    const viewCountEl = document.getElementById('viewCount');
 
-    function updateViewCounter() {
-        fetch(countUrl)
+    const incrementCounter = () => {
+        fetch('https://api.countapi.xyz/hit/cece-eye-counter/views')
             .then(response => response.json())
             .then(data => {
-                document.getElementById('viewCount').textContent = data.value;
-            })
-            .catch(err => console.error('Error fetching view count:', err));
-    }
+                viewCountEl.textContent = data.value;
+            });
+    };
 
-    updateViewCounter();
+    incrementCounter();
+
+    overlay.addEventListener('click', () => {
+        incrementCounter();
+    });
 </script>
 
 <img src="cat3.gif" alt="cat" class="cat3-gif">
