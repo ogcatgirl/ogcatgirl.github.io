@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>rape</title>   
     <style>
-        
         body, .overlay, #anime-girl {
             user-select: none;
             -webkit-user-select: none;
@@ -127,9 +126,6 @@
             align-items: center;
             justify-content: center;
             user-select: text;
-            -webkit-user-select: text;
-            -moz-user-select: text;
-            -ms-user-select: text;
         }
 
         .social-item img {
@@ -170,31 +166,29 @@
             user-select: none;
         }
 
-        .eye-png {
+        .eye-counter {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 300px;
-            height: auto;
-            z-index: 999;
-            pointer-events: none;
-            user-select: none;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: monospace;
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 0.6s ease;
         }
 
-        #view-counter {
-            position: fixed;
-            bottom: 40px;
-            left: 320px; 
-            font-size: 1rem;
-            font-family: monospace;
-            color: white;
-            text-shadow: 0 0 6px rgba(255,255,255,0.5);
-            z-index: 1000;
+        .eye-counter img {
+            width: 30px;
+            height: auto;
+            filter: drop-shadow(0 0 6px rgba(255,255,255,0.5));
         }
 
         @media (max-width: 768px) {
-            .cat3-gif, .eye-png { width: 220px; }
-            #view-counter { font-size: 0.9rem; bottom: 20px; left: 240px; }
+            .cat3-gif {
+                width: 220px;
+            }
         }
     </style>
     <link rel="icon" href="icon.png">
@@ -216,6 +210,7 @@
         setTimeout(function(){
             overlay.style.display = 'none';
             document.getElementById('infoBox').style.opacity = '1';
+            document.getElementById('eyeCounter').style.opacity = '1';
         }, 500);
     });
 
@@ -233,8 +228,9 @@
     });
 </script>
 
+
 <div id="anime-girl">
-   ⠟⠋⠀⠄⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⢢⠙⠛⣿⣿⡆⠀⠀⢠⠀⠀⠀⠹⣦⢣⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⢤⣀⠀⠀⠀⠀⠀⠀⠀
+  ⠟⠋⠀⠄⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⢢⠙⠛⣿⣿⡆⠀⠀⢠⠀⠀⠀⠹⣦⢣⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⢤⣀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⣼⡟⣰⠃⠀⠀⢀⡶⢤⡀⠀⠀⠀⠘⡆⠀⠀⠀⠈⣆⠀⠛⢻⣿⣀⠀⠈⡇⠀⢀⠀⢹⣎⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⠃⠀⢨⠇⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⣿⠁⣽⣄⣀⣀⡾⠇⠘⡷⢦⡀⠀⠀⢻⠀⠀⠀⠀⠘⡆⠀⠀⢿⣽⣦⠀⢿⠀⢸⠀⠀⡟⢾⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢧⣀⣠⠏⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⢸⡏⡄⠈⣧⢈⡿⠛⠛⠓⢷⡀⠙⠛⣶⣚⣧⠀⠀⠀⢀⢻⠀⠀⠈⢿⣿⣷⣼⠀⣸⠀⢸⣷⡈⢻⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀
@@ -266,7 +262,7 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠏⢡⡤⣶⠀⠹⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡦⠼⠓⠳⠦⣄⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣧⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠶⡖⠒⠒⢦⣼⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡿⠆⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠋
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠋  
 </div>
 
 <div class="info-box" id="infoBox">
@@ -282,7 +278,13 @@
   </div>
 </div>
 
+<div class="eye-counter" id="eyeCounter">
+    <img src="eye.png" alt="eye">
+    <span id="count">0</span>
+</div>
+
 <script>
+    // copy-to-clipboard tooltips
     document.querySelectorAll('.social-item').forEach(item => {
         const tooltip = item.querySelector('.tooltip');
         item.addEventListener('click', () => {
@@ -298,31 +300,17 @@
         item.addEventListener('mouseenter', () => { tooltip.style.opacity = '1'; });
         item.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; });
     });
-</script>
 
-<img src="cat3.gif" alt="cat" class="cat3-gif">
-
-<img src="eye.png" alt="eye" class="eye-png">
-
-<div id="view-counter">👁 Views: <span id="count">0</span></div>
-
-<script>
-
-const counterKey = 'cece_under80bmi_permanent_views'; 
-
-fetch(`https://api.countapi.xyz/get/cece/${counterKey}`)
-  .then(res => res.json())
-  .then(res => {
-    let current = res.value || 0;
-    document.getElementById('count').textContent = current;
-
+    
+    const counterKey = 'cece_under80bmi_permanent_views';
     fetch(`https://api.countapi.xyz/hit/cece/${counterKey}`)
-      .then(r => r.json())
+      .then(res => res.json())
       .then(data => {
         document.getElementById('count').textContent = data.value;
       });
-  });
 </script>
+
+<img src="cat3.gif" alt="cat" class="cat3-gif">
 
 </body>
 </html>
