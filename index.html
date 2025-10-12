@@ -8,8 +8,9 @@
     <meta name="description" content="cece is under 80bmi">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>rape</title>  
+    <title>rape</title>   
     <style>
+        
         body, .overlay, #anime-girl {
             user-select: none;
             -webkit-user-select: none;
@@ -31,6 +32,7 @@
             text-shadow: 0 0 10px rgb(90, 85, 85);
             overflow: hidden;
             cursor: url('cursor.cur'), auto;
+            background: url('background.jpg') center/cover no-repeat fixed;
         }
 
         .overlay {
@@ -119,6 +121,7 @@
             gap: 80px; 
         }
 
+        
         .social-item {
             position: relative;
             cursor: pointer;
@@ -158,31 +161,36 @@
             white-space: nowrap;
         }
 
-        
         @media (max-width: 768px) {
             .overlay {
-                background: rgba(0, 0, 0, 0.3);
+                background: rgba(0, 0, 0, 0.45);
                 backdrop-filter: blur(2px);
             }
             body {
                 background-color: #111;
-            }
-            #anime-girl {
-                opacity: 0.9;
-                transform: scale(1.1); 
-            }
-            .info-box {
-                background: rgba(255, 255, 255, 0.08);
-                backdrop-filter: blur(3px);
-                padding: 20px 30px;
-                gap: 40px;
-            }
-            .social-item img {
-                width: 50px;
-                height: 50px;
+                background-attachment: scroll;
             }
         }
-        
+
+        .cat3-gif {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 220px;
+            height: auto;
+            z-index: 900;
+            pointer-events: none;
+            user-select: none;
+            transform: translateY(5px);
+        }
+
+        @media (max-width: 768px) {
+            .cat3-gif {
+                width: 150px;
+                transform: translateY(0);
+            }
+        }
+
     </style>
     <link rel="icon" href="icon.png">
 </head>
@@ -191,6 +199,35 @@
 <div class="overlay" id="overlay">
     <h1>click me</h1>
 </div>
+
+<script>
+    var overlay = document.getElementById('overlay');
+    var audio = new Audio('/music.mp3');
+    
+    overlay.addEventListener('click', function() {
+        audio.play();
+        overlay.style.transition = 'opacity 0.5s';
+        overlay.style.opacity = '0';
+        setTimeout(function(){
+            overlay.style.display = 'none';
+            document.getElementById('infoBox').style.opacity = '1';
+        }, 500);
+    });
+
+    document.addEventListener('mousemove', function(e) {
+        const dot = document.createElement('div');
+        dot.classList.add('cursor-dot');
+        dot.style.left = `${e.clientX}px`;
+        dot.style.top = `${e.clientY}px`;
+        document.body.appendChild(dot);
+        setTimeout(() => dot.remove(), 1000);
+    });
+
+    
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+</script>
 
 <div id="anime-girl">
 ⠟⠋⠀⠄⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⢢⠙⠛⣿⣿⡆⠀⠀⢠⠀⠀⠀⠹⣦⢣⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⢤⣀⠀⠀⠀⠀⠀⠀⠀
@@ -225,60 +262,39 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠏⢡⡤⣶⠀⠹⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡦⠼⠓⠳⠦⣄⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣧⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠶⡖⠒⠒⢦⣼⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡿⠆⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠋⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠋
 </div>
 
 <div class="info-box" id="infoBox">
-    <div class="socials">
-        <div class="social-item" data-username="yourdiscord#0000">
-            <img src="discord.png" alt="Discord">
-            <div class="tooltip">click to copy</div>
-        </div>
-        <div class="social-item" data-username="@yourtelegram">
-            <img src="telegram.png" alt="Telegram">
-            <div class="tooltip">click to copy</div>
-        </div>
+  <div class="socials">
+    <div class="social-item" id="discordItem" data-username="pnytail">
+      <img src="discord.png" alt="Discord">
+      <div class="tooltip">click to copy</div>
     </div>
+    <div class="social-item" id="telegramItem" data-username="ch_ker">
+      <img src="telegram.png" alt="Telegram">
+      <div class="tooltip">click to copy</div>
+    </div>
+  </div>
 </div>
 
+<img src="cat3.gif" alt="cat" class="cat3-gif">
+
 <script>
-    const overlay = document.getElementById('overlay');
-    const audio = new Audio('/music.mp3');
-    const socialItems = document.querySelectorAll('.social-item');
-
-    overlay.addEventListener('click', function() {
-        audio.play();
-        overlay.style.transition = 'opacity 0.5s';
-        overlay.style.opacity = '0';
-        setTimeout(function(){
-            overlay.style.display = 'none';
-            document.getElementById('infoBox').style.opacity = '1';
-        }, 500);
-    });
-
-    document.addEventListener('mousemove', function(e) {
-        const dot = document.createElement('div');
-        dot.classList.add('cursor-dot');
-        dot.style.left = `${e.clientX}px`;
-        dot.style.top = `${e.clientY}px`;
-        document.body.appendChild(dot);
-        setTimeout(() => dot.remove(), 1000);
-    });
-
-    document.addEventListener('contextmenu', e => e.preventDefault());
-
-    socialItems.forEach(item => {
+    document.querySelectorAll('.social-item').forEach(item => {
         const tooltip = item.querySelector('.tooltip');
-        const username = item.dataset.username;
-
-        item.addEventListener('mouseenter', () => tooltip.style.opacity = '1');
-        item.addEventListener('mouseleave', () => tooltip.style.opacity = '0');
-
         item.addEventListener('click', () => {
+            const username = item.getAttribute('data-username');
             navigator.clipboard.writeText(username);
-            tooltip.textContent = 'copied!';
-            setTimeout(() => tooltip.textContent = 'click to copy', 1500);
+            tooltip.textContent = 'copied lol';
+            tooltip.style.opacity = '1';
+            setTimeout(() => {
+                tooltip.textContent = 'click to copy';
+                tooltip.style.opacity = '0';
+            }, 1000);
         });
+        item.addEventListener('mouseenter', () => { tooltip.style.opacity = '1'; });
+        item.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; });
     });
 </script>
 
