@@ -282,7 +282,6 @@
   </div>
 </div>
 
-
 <div class="eye-counter" id="eyeCounter">
     <img src="eye.png" alt="Eye">
     <span id="viewCount">0</span>
@@ -306,11 +305,19 @@
         item.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; });
     });
 
-    fetch('https://api.countapi.xyz/hit/cece-eye-counter/views')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('viewCount').textContent = data.value;
-        });
+    const countKey = 'cece-eye-counter';
+    const countUrl = `https://api.countapi.xyz/hit/${countKey}/views`;
+
+    function updateViewCounter() {
+        fetch(countUrl)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('viewCount').textContent = data.value;
+            })
+            .catch(err => console.error('Error fetching view count:', err));
+    }
+
+    updateViewCounter();
 </script>
 
 <img src="cat3.gif" alt="cat" class="cat3-gif">
