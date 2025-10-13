@@ -205,9 +205,21 @@
 </div>
 
 <script>
-    var overlay = document.getElementById('overlay');
-    var audio = new Audio('/music.mp3');
-    
+    const overlay = document.getElementById('overlay');
+    const audio = new Audio('/music.mp3');
+    const viewCountEl = document.getElementById('viewCount');
+
+    function loadCounter() {
+        fetch('https://api.counterapi.dev/counter/cc/myviews')
+            .then(res => res.json())
+            .then(data => {
+                viewCountEl.textContent = data.value || 0;
+            })
+            .catch(err => console.error('CounterAPI fetch error:', err));
+    }
+
+    loadCounter();
+
     overlay.addEventListener('click', function() {
         audio.play();
         overlay.style.transition = 'opacity 0.5s';
@@ -217,11 +229,12 @@
             document.getElementById('infoBox').style.opacity = '1';
             document.getElementById('eyeCounter').style.opacity = '1'; 
             
-            fetch('https://counterapi.dev/api/v1/cc/myviews/hit', { method: 'POST' })
+            fetch('https://api.counterapi.dev/counter/cc/myviews/hit', { method: 'POST' })
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('viewCount').textContent = data.value;
-                });
+                    viewCountEl.textContent = data.value;
+                })
+                .catch(err => console.error('CounterAPI hit error:', err));
         }, 500);
     });
 
@@ -240,6 +253,21 @@
 </script>
 
 <div id="anime-girl">
+
+</div>
+
+<div class="info-box" id="infoBox">
+  <div class="socials">
+    <div class="social-item" id="discordItem" data-username="pnytail">
+      <img src="discord.png" alt="Discord">
+      <div class="tooltip">click to copy</div>
+    </div>
+    <div class="social-item" id="telegramItem" data-username="ch_ker">
+      <img src="telegram.png" alt="Telegram">
+      <div class="tooltip">click to copy</div>
+    </div>
+  </div>
+</div>
 ⠟⠋⠀⠄⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⢢⠙⠛⣿⣿⡆⠀⠀⢠⠀⠀⠀⠹⣦⢣⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⢤⣀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⣼⡟⣰⠃⠀⠀⢀⡶⢤⡀⠀⠀⠀⠘⡆⠀⠀⠀⠈⣆⠀⠛⢻⣿⣀⠀⠈⡇⠀⢀⠀⢹⣎⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⠃⠀⢨⠇⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⣿⠁⣽⣄⣀⣀⡾⠇⠘⡷⢦⡀⠀⠀⢻⠀⠀⠀⠀⠘⡆⠀⠀⢿⣽⣦⠀⢿⠀⢸⠀⠀⡟⢾⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢧⣀⣠⠏⠀⠀⠀⠀⠀⠀⠀
@@ -272,22 +300,7 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠏⢡⡤⣶⠀⠹⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡦⠼⠓⠳⠦⣄⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣧⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠶⡖⠒⠒⢦⣼⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡿⠆⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠋⠀⠀
-</div>
-
-<div class="info-box" id="infoBox">
-  <div class="socials">
-    <div class="social-item" id="discordItem" data-username="pnytail">
-      <img src="discord.png" alt="Discord">
-      <div class="tooltip">click to copy</div>
-    </div>
-    <div class="social-item" id="telegramItem" data-username="ch_ker">
-      <img src="telegram.png" alt="Telegram">
-      <div class="tooltip">click to copy</div>
-    </div>
-  </div>
-</div>
-
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠋⠀
 <div class="eye-counter" id="eyeCounter">
     <img src="eye.png" alt="Eye">
     <span id="viewCount">0</span>
