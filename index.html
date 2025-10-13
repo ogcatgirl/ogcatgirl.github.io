@@ -170,25 +170,6 @@
             user-select: none;
         }
 
-        .eye-counter {
-            position: fixed;
-            bottom: 60px; 
-            left: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: monospace;
-            font-size: 20px;
-            opacity: 0.4; 
-            transition: opacity 0.8s ease;
-        }
-
-        .eye-counter img {
-            width: 38px;
-            height: auto;
-            filter: drop-shadow(0 0 6px rgba(255,255,255,0.5));
-        }
-
         @media (max-width: 768px) {
             .cat3-gif {
                 width: 220px;
@@ -203,6 +184,34 @@
 <div class="overlay" id="overlay">
     <h1>click me</h1>
 </div>
+
+<script>
+    const overlay = document.getElementById('overlay');
+    const audio = new Audio('/music.mp3');
+
+    overlay.addEventListener('click', function() {
+        audio.play();
+        overlay.style.transition = 'opacity 0.5s';
+        overlay.style.opacity = '0';
+        setTimeout(function(){
+            overlay.style.display = 'none';
+            document.getElementById('infoBox').style.opacity = '1';
+        }, 500);
+    });
+
+    document.addEventListener('mousemove', function(e) {
+        const dot = document.createElement('div');
+        dot.classList.add('cursor-dot');
+        dot.style.left = `${e.clientX}px`;
+        dot.style.top = `${e.clientY}px`;
+        document.body.appendChild(dot);
+        setTimeout(() => dot.remove(), 1000);
+    });
+
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+</script>
 
 <div id="anime-girl">
 ⠟⠋⠀⠄⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⢢⠙⠛⣿⣿⡆⠀⠀⢠⠀⠀⠀⠹⣦⢣⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⢤⣀⠀⠀⠀⠀⠀⠀⠀
@@ -237,7 +246,7 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠏⢡⡤⣶⠀⠹⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡦⠼⠓⠳⠦⣄⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣧⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠶⡖⠒⠒⢦⣼⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡿⠆⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠋⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠋
 </div>
 
 <div class="info-box" id="infoBox">
@@ -253,42 +262,7 @@
   </div>
 </div>
 
-<div class="eye-counter" id="eyeCounter">
-    <img src="eye.png" alt="Eye">
-    <span id="viewCount">0</span>
-</div>
-
-<img src="cat3.gif" alt="cat" class="cat3-gif">
-
 <script>
-    var overlay = document.getElementById('overlay');
-    var audio = new Audio('/music.mp3');
-
-    overlay.addEventListener('click', function() {
-        audio.play();
-        overlay.style.transition = 'opacity 0.5s';
-        overlay.style.opacity = '0';
-        setTimeout(function(){
-            overlay.style.display = 'none';
-            document.getElementById('infoBox').style.opacity = '1';
-            document.getElementById('eyeCounter').style.opacity = '1';
-            updateCounter();
-        }, 500);
-    });
-
-    document.addEventListener('mousemove', function(e) {
-        const dot = document.createElement('div');
-        dot.classList.add('cursor-dot');
-        dot.style.left = `${e.clientX}px`;
-        dot.style.top = `${e.clientY}px`;
-        document.body.appendChild(dot);
-        setTimeout(() => dot.remove(), 1000);
-    });
-
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
-
     document.querySelectorAll('.social-item').forEach(item => {
         const tooltip = item.querySelector('.tooltip');
         item.addEventListener('click', () => {
@@ -304,29 +278,9 @@
         item.addEventListener('mouseenter', () => { tooltip.style.opacity = '1'; });
         item.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; });
     });
-
-    const counterKey = 'cece-eye-counter-hit';
-    async function updateCounter() {
-        const viewSpan = document.getElementById('viewCount');
-
-        if (localStorage.getItem(counterKey)) {
-            
-            fetch('https://counterapi.dev/api/v1/cc/myviews')
-                .then(res => res.json())
-                .then(data => viewSpan.textContent = data.value)
-                .catch(err => console.error('Error fetching counter:', err));
-            return;
-        }
-
-        fetch('https://counterapi.dev/api/v1/cc/myviews/hit', { method: 'GET' })
-            .then(res => res.json())
-            .then(data => {
-                viewSpan.textContent = data.value;
-                localStorage.setItem(counterKey, 'true');
-            })
-            .catch(err => console.error('Error hitting counter:', err));
-    }
 </script>
+
+<img src="cat3.gif" alt="cat" class="cat3-gif">
 
 </body>
 </html>
