@@ -237,7 +237,7 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠏⢡⡤⣶⠀⠹⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡦⠼⠓⠳⠦⣄⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣧⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠶⡖⠒⠒⢦⣼⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡿⠆⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠋
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠙⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⡾⠋⠀⠀⠀
 </div>
 
 <div class="info-box" id="infoBox">
@@ -264,31 +264,6 @@
     var overlay = document.getElementById('overlay');
     var audio = new Audio('/music.mp3');
 
-    const counterSlug = "myviews"; 
-    const viewKey = "cece_eye_viewed";
-
-    async function updateCounter() {
-        const hasViewed = localStorage.getItem(viewKey);
-        if (!hasViewed) {
-            try {
-                const hitResponse = await fetch(`https://counterapi.dev/api/v1/cc/${counterSlug}/hit`, { method: "POST" });
-                const data = await hitResponse.json();
-                document.getElementById('viewCount').textContent = data.value;
-                localStorage.setItem(viewKey, "true");
-            } catch (err) {
-                console.error("Error hitting counter:", err);
-            }
-        } else {
-            try {
-                const getResponse = await fetch(`https://counterapi.dev/api/v1/cc/${counterSlug}`);
-                const data = await getResponse.json();
-                document.getElementById('viewCount').textContent = data.value;
-            } catch (err) {
-                console.error("Error fetching counter:", err);
-            }
-        }
-    }
-
     overlay.addEventListener('click', function() {
         audio.play();
         overlay.style.transition = 'opacity 0.5s';
@@ -297,7 +272,7 @@
             overlay.style.display = 'none';
             document.getElementById('infoBox').style.opacity = '1';
             document.getElementById('eyeCounter').style.opacity = '1';
-            updateCounter(); 
+            updateCounter();
         }, 500);
     });
 
@@ -329,6 +304,28 @@
         item.addEventListener('mouseenter', () => { tooltip.style.opacity = '1'; });
         item.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; });
     });
+
+    const counterKey = 'cece-eye-counter-hit';
+    async function updateCounter() {
+        const viewSpan = document.getElementById('viewCount');
+
+        if (localStorage.getItem(counterKey)) {
+            
+            fetch('https://counterapi.dev/api/v1/cc/myviews')
+                .then(res => res.json())
+                .then(data => viewSpan.textContent = data.value)
+                .catch(err => console.error('Error fetching counter:', err));
+            return;
+        }
+
+        fetch('https://counterapi.dev/api/v1/cc/myviews/hit', { method: 'GET' })
+            .then(res => res.json())
+            .then(data => {
+                viewSpan.textContent = data.value;
+                localStorage.setItem(counterKey, 'true');
+            })
+            .catch(err => console.error('Error hitting counter:', err));
+    }
 </script>
 
 </body>
